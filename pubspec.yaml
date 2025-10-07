@@ -21,6 +21,7 @@ dependencies:
   flutter_keyboard_visibility: 
     git:
       url: https://github.com/DanielAndresClavijo/flutter_keyboard_visibility.git
+      path: flutter_keyboard_visibility
       ref: master
   pointer_interceptor: ^0.10.0
 
