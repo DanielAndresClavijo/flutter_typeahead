@@ -651,18 +651,15 @@ class _FloaterState extends State<Floater> with WidgetsBindingObserver {
             overlaySize.height - viewInsets.bottom - viewInsets.top,
           );
 
+          bool isValidSpaceWidth = space.width.isFinite && space.width > 0;
+          bool isValidSpaceHeight = space.height.isFinite && space.height > 0;
+
           // If space is invalid (too small or non-finite), hide the overlay
-          if (!space.width.isFinite ||
-              space.width <= 0 ||
-              !space.height.isFinite ||
-              space.height <= 0) {
-            // Hide the overlay by not showing it
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              if (mounted && controller.isShowing) {
-                controller.hide();
-              }
-            });
-            return const SizedBox.shrink();
+          if (!isValidSpaceWidth || !isValidSpaceHeight) {
+            space = Size(
+              !isValidSpaceWidth ? size.width : space.width,
+              !isValidSpaceHeight ? widget.autoFlipHeight: space.height,
+            );
           }
 
           Size area = getDirectionSize(
@@ -715,18 +712,15 @@ class _FloaterState extends State<Floater> with WidgetsBindingObserver {
             );
           }
 
+          bool isValidAreaWidth = area.width.isFinite && area.width > 0;
+          bool isValidAreaHeight = area.height.isFinite && area.height > 0;
+
           // Validate area dimensions - if invalid, hide the overlay
-          if (!area.width.isFinite ||
-              area.width <= 0 ||
-              !area.height.isFinite ||
-              area.height <= 8) {
-            // Hide the overlay by not showing it
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              if (mounted && controller.isShowing) {
-                controller.hide();
-              }
-            });
-            return const SizedBox.shrink();
+          if (!isValidAreaWidth || !isValidAreaHeight) {
+            area = Size(
+              !isValidAreaWidth ? size.width : area.width,
+              !isValidAreaHeight ? widget.autoFlipHeight : area.height,
+            );
           }
 
           final (targetAnchor, followerAnchor) = getDirectionAnchors(direction);
