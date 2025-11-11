@@ -18,17 +18,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_keyboard_visibility: 
+  flutter_keyboard_visibility:
     git:
       url: https://github.com/DanielAndresClavijo/flutter_keyboard_visibility.git
       path: flutter_keyboard_visibility
       ref: master
-  pointer_interceptor: ^0.10.0
+  pointer_interceptor: ^0.10.1+2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.3
+  flutter_lints: ^6.0.0
 
 flutter:
   uses-material-design: true
